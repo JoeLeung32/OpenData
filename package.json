@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "node utils/deploy/run.js --dirname='./dist/opendata'",
+    "deployToServer": "npm run build && npm run deploy"
   },
   "private": true,
   "dependencies": {
