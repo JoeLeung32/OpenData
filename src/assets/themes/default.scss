@@ -1,0 +1,71 @@
+// colors
+$transparent-bg-color: rgba(255, 255, 255, .5);
+$transparent-bg-color-dark: rgba(0, 0, 0, .25);
+$primary-bg-color: #F4F7F9;
+$primary-bg-color-dark: #1E262B;
+$secondary-bg-color: #F0F1F4;
+$secondary-bg-color-dark: #2B3338;
+$tertiary-bg-color: #20B175;
+$tertiary-bg-color-dark: #083D78;
+
+$primary-font-color: #4C5560;
+$primary-font-color-dark: #252836;
+$secondary-font-color: #AFB5BA;
+$secondary-font-color-dark: #767981;
+
+$primary-btn-color: #eee;
+$primary-btn-color-dark: #222;
+$primary-font-color: #000;
+$primary-font-color-dark: #fff;
+
+// others
+$topBarHeight: 60px;
+$leftRightSpacing: 24px;
+
+// code gen
+$colors: (
+        --primary-bg-color: ($primary-bg-color, $primary-bg-color-dark),
+        --secondary-bg-color: ($secondary-bg-color, $secondary-bg-color-dark),
+        --tertiary-bg-color: ($tertiary-bg-color, $tertiary-bg-color-dark),
+        --primary-font-color: ($primary-font-color, $primary-font-color-dark),
+        --secondary-font-color: ($secondary-font-color, $secondary-font-color-dark),
+        --transparent-bg-color: ($transparent-bg-color, $transparent-bg-color-dark),
+        --primary-btn-color: ($primary-btn-color, $primary-btn-color-dark),
+        --primary-btn-font-color: ($primary-font-color, $primary-font-color-dark),
+);
+
+// mixin
+
+@mixin page-wrapper {
+  min-height: calc(100vh - #{$topBarHeight});
+}
+
+@mixin box-shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+}
+
+@mixin text-shadow {
+  text-shadow: 0 0 10px rgba(0, 0, 0, .9);
+}
+
+// schema
+::ng-deep body {
+  &.light {
+    @each $name, $color in $colors {
+      #{$name}: nth($color, 1);
+    }
+  }
+
+  &.dark {
+    @each $name, $color in $colors {
+      #{$name}: nth($color, 2);
+    }
+  }
+
+  background-color: var(--primary-bg-color);
+  color: var(--primary-font-color);
+
+  a {
+    color: var(--primary-font-color);
+  }
+}
