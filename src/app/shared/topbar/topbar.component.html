@@ -1,0 +1,41 @@
+<div class="topbar d-flex flex-wrap align-content-center">
+    <div class="container d-flex flex-wrap justify-content-between align-content-center position-relative">
+        <div class="d-flex flex-wrap">
+            <ng-container *ngIf="displayHomeIcon">
+                <div>
+                    <fa-icon [icon]="homeIcon"></fa-icon>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="displayBackIcon">
+                <div>
+                    <fa-icon [icon]="backIcon"></fa-icon>
+                </div>
+            </ng-container>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center position-absolute">
+            <a (click)="router.navigate([currentLanguage])">
+                {{displayPageTitle|translate}}
+            </a>
+        </div>
+        <div class="d-flex flex-wrap">
+            <ng-container *ngIf="themeModeIcon && displayThemeIcon">
+                <div (click)="changeMode()" class="btnThemSwitch">
+                    <fa-icon [icon]="themeModeIcon"></fa-icon>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="displayLanguageIcon">
+                <div class="btnLocal">
+                    <label for="localMenu" class="mb-0">
+                        <fa-icon [icon]="languageIcon"></fa-icon>
+                    </label>
+                    <input id="localMenu" type="checkbox">
+                    <div class="localMenu">
+                        <span (click)="changeLanguageAndUrl('en')">English</span>
+                        <span (click)="changeLanguageAndUrl('tc')">繁體中文</span>
+                        <span (click)="changeLanguageAndUrl('sc')">简体中文</span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
