@@ -1,0 +1,16 @@
+@import "~src/assets/themes/default";
+
+.card {
+  background-color: var(--secondary-bg-color);
+
+  .card-body {
+    .weatherIcon {
+      background-color: var(--tertiary-bg-color);
+      user-select: none;
+    }
+  }
+
+  .card-footer {
+    color: var(--secondary-font-color);
+  }
+}

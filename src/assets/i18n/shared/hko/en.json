@@ -1,0 +1,19 @@
+{
+  "rainstormReminder": "Rainstorm Reminder",
+  "warningMessage": "Warning Message",
+  "specialWxTips": "Special Warning Tips",
+  "tcmessage": "Tropical Cyclone Message",
+  "uvindex": "UV Index",
+  "rainfall": "Rainfall",
+  "lightning": "Lightning",
+  "regionalTemperature": "Regional Temperature",
+  "humidity": "Humidity",
+  "minTempFrom00to09": "Minimum temperature from midnight to 9 a.m.",
+  "HKORainfallFrom00to12": "Hong Kong Observatory's accumulated rainfall from midnight to noon",
+  "rainfallLastMonth": "Rainfall last month",
+  "cumulativeRainfallFromJan": "Cumulative rainfall from January to last month",
+  "iconUpdateTime": "Icon last update",
+  "dataUpdateTime": "Data last update",
+  "maintain": "Maintain",
+  "occurring": "Occurring"
+}

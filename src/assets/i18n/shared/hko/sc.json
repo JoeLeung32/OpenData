@@ -1,0 +1,20 @@
+{
+  "rainstormReminder": "暴雨警告提醒",
+  "warningMessage": "警告信息",
+  "specialWxTips": "特别天气提示",
+  "tcmessage": "热带气旋位置的消息",
+  "uvindex": "紫外线指数",
+  "rainfall": "雨量",
+  "lightning": "闪电",
+  "regionalTemperature": "分区气温",
+  "humidity": "湿度",
+  "minTempFrom00to09": "午夜至上午九时的最低温度",
+  "HKORainfallFrom00to12": "香港天文台从午夜至中午累计降雨量",
+  "rainfallLastMonth": "上个月降雨量",
+  "cumulativeRainfallFromJan": "一月至上月累计降雨量",
+  "iconUpdateTime": "图示更新时间",
+  "dataUpdateTime": "资料更新时间",
+  "maintain": "维护中",
+  "occurring": "发生中"
+}
+
