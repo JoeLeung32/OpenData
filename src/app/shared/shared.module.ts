@@ -12,6 +12,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {PageWrapperComponent} from './page-wrapper/page-wrapper.component';
 import {LayFlexTwoOneComponent} from './layouts/lay-flex-two-one/lay-flex-two-one.component';
+import { HkoCurrentWeatherReportComponent } from './hko/hko-current-weather-report/hko-current-weather-report.component';
 // import {EleChangelogListComponent} from './elements/ele-changelog-list/ele-changelog-list.component';
 // import {HkoLatestMinTemperatureComponent} from './hkgov/hko/hko-latest-min-temperature/hko-latest-min-temperature.component';
 
@@ -29,6 +30,7 @@ export class MyHammerConfig extends HammerGestureConfig {
         HeaderComponent,
         PageWrapperComponent,
         LayFlexTwoOneComponent,
+        HkoCurrentWeatherReportComponent,
         // EleChangelogListComponent,
         // HkoLatestMinTemperatureComponent,
     ],
@@ -47,6 +49,7 @@ export class MyHammerConfig extends HammerGestureConfig {
         FooterComponent,
         PageWrapperComponent,
         LayFlexTwoOneComponent,
+        HkoCurrentWeatherReportComponent,
         // EleChangelogListComponent,
         // HkoLatestMinTemperatureComponent,
     ],

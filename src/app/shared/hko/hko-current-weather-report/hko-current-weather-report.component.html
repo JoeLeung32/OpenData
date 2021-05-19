@@ -1,0 +1,232 @@
+<ng-container *ngIf="currentWeatherReport">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-3">
+                    <div class="d-flex flex-wrap flex-row">
+                        <div class="weatherIcon rounded p-2">
+                            <ng-container *ngFor="let icon of currentWeatherReport.icon">
+                                <img [src]="'https://www.hko.gov.hk/images/HKOWxIconOutline/pic'+icon+'.png'" [alt]="icon">
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm">
+                    <ng-container *ngIf="currentWeatherReport.rainstormReminder">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <div>{{langPack.getValue().rainstormReminder}}</div>
+                            <div>{{currentWeatherReport.rainstormReminder}}</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="currentWeatherReport.warningMessage">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <ng-container
+                                    *ngTemplateOutlet="messageList; context: { title: langPack.getValue().warningMessage, $implicit: currentWeatherReport.warningMessage }">
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="currentWeatherReport.specialWxTips">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <ng-container
+                                    *ngTemplateOutlet="messageList; context: { title: langPack.getValue().specialWxTips, $implicit: currentWeatherReport.specialWxTips }">
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="currentWeatherReport.tcmessage">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <ng-container
+                                    *ngTemplateOutlet="messageList; context: { title:langPack.getValue().tcmessage, $implicit: currentWeatherReport.tcmessage }">
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <ng-container *ngIf="currentWeatherReport.uvindex">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <ng-container
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().uvindex, subTitle: i18nDateTime(currentWeatherReport.uvindex.recordTime), $implicit: carouselUvindex }">
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="currentWeatherReport.rainfall">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <ng-container
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().rainfall, subTitle: i18nDateTime(currentWeatherReport.rainfall.startTime) + ' - ' + i18nDateTime(currentWeatherReport.rainfall.endTime), $implicit: carouselRainfall }">
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="currentWeatherReport.lightning">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <ng-container
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().lightning, subTitle: i18nDateTime(currentWeatherReport.lightning.startTime) + ' - ' + i18nDateTime(currentWeatherReport.lightning.endTime), $implicit: carouselLightning }">
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="d-flex flex-wrap flex-column my-2">
+                        <ng-container
+                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().regionalTemperature, subTitle: i18nDateTime(currentWeatherReport.temperature.recordTime), $implicit: carouselTemperature }">
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="d-flex flex-wrap flex-column my-2">
+                        <ng-container
+                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().humidity , subTitle: i18nDateTime(currentWeatherReport.humidity.recordTime), $implicit: carouselHumidity }">
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer small d-flex flex-wrap flex-column">
+            <ng-container *ngIf="currentWeatherReport.mintempFrom00To09">
+                <i>{{langPack.getValue().minTempFrom00to09}}：{{currentWeatherReport.mintempFrom00To09}}</i>
+            </ng-container>
+            <ng-container *ngIf="currentWeatherReport.rainfallFrom00To12">
+                <i>{{langPack.getValue().HKORainfallFrom00to12}}：{{currentWeatherReport.rainfallFrom00To12}}</i>
+            </ng-container>
+            <ng-container *ngIf="currentWeatherReport.rainfallLastMonth">
+                <i>{{langPack.getValue().rainfallLastMonth}}：{{currentWeatherReport.rainfallLastMonth}}</i>
+            </ng-container>
+            <ng-container *ngIf="currentWeatherReport.rainfallJanuaryToLastMonth">
+                <i>{{langPack.getValue().cumulativeRainfallFromJan}}：{{currentWeatherReport.rainfallJanuaryToLastMonth}}</i>
+            </ng-container>
+            <div>{{langPack.getValue().iconUpdateTime}}：{{currentWeatherReport.iconUpdateTime}}</div>
+            <div>{{langPack.getValue().dataUpdateTime}}：{{currentWeatherReport.updateTime}}</div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #messageList let-title="title" let-params>
+    <div>{{title|translate}}</div>
+    <ng-container *ngFor="let message of params">
+        <ol>
+            <li>{{message}}</li>
+        </ol>
+    </ng-container>
+</ng-template>
+
+<ng-template #ngbCarousel let-title="title" let-subTitle="subTitle" let-param>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <strong>{{title|translate}}</strong>&nbsp;
+        <small>{{subTitle}}</small>
+    </div>
+    <div class="swipe my-2" (swipe)="onSwipe($event)">
+        <ng-container *ngTemplateOutlet="param"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template #carouselUvindex>
+    <ngb-carousel
+        #carousels
+        [animation]="true"
+        [showNavigationArrows]="currentWeatherReport.uvindex.data?.length > 1"
+        [showNavigationIndicators]="false"
+    >
+        <ng-container
+                *ngFor="let uvindex of currentWeatherReport.uvindex.data; let idx = index">
+            <ng-template ngbSlide id="uvindex{{idx}}">
+                <div class="d-flex flex-wrap">
+                    <div class="m-auto text-center">
+                        <div>{{uvindex.place}}</div>
+                        <div>{{uvindex.value}} {{uvindex.desc}}</div>
+                        <div>{{uvindex.message}}</div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ngb-carousel>
+</ng-template>
+
+<ng-template #carouselRainfall>
+    <ngb-carousel
+        #carousels
+        [animation]="true"
+        [showNavigationArrows]="currentWeatherReport.rainfall.data?.length > 1"
+        [showNavigationIndicators]="false"
+    >
+        <ng-container
+                *ngFor="let rainfall of currentWeatherReport.rainfall.data; let idx = index">
+            <ng-template ngbSlide id="rainfall{{idx}}">
+                <div class="d-flex flex-wrap">
+                    <div class="m-auto text-center">
+                        <div>{{rainfall.place}}</div>
+                        <div>{{rainfall.max}} {{rainfall.unit}}</div>
+                        <ng-container *ngIf="rainfall.main === 'TRUE'">
+                            <div>{{langPack.getValue().maintain}}</div>
+                        </ng-container>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ngb-carousel>
+</ng-template>
+
+<ng-template #carouselLightning>
+    <ngb-carousel
+        #carousels
+        [animation]="true"
+        [showNavigationArrows]="currentWeatherReport.lightning.data?.length > 1"
+        [showNavigationIndicators]="false"
+    >
+        <ng-container
+                *ngFor="let lightning of currentWeatherReport.lightning.data; let idx = index">
+            <ng-template ngbSlide id="lightning{{idx}}">
+                <div class="d-flex flex-wrap">
+                    <div class="m-auto text-center">
+                        <div>{{lightning.place}}</div>
+                        <div>{{lightning.occur ? langPack.getValue().occurring : ''}}</div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ngb-carousel>
+</ng-template>
+
+<ng-template #carouselTemperature>
+    <ngb-carousel
+        #carousels
+        [animation]="true"
+        [showNavigationArrows]="currentWeatherReport.temperature?.data.length > 1"
+        [showNavigationIndicators]="false"
+    >
+        <ng-container
+                *ngFor="let temperature of currentWeatherReport.temperature.data; let idx = index">
+            <ng-template ngbSlide id="temperature{{idx}}">
+                <div class="d-flex flex-wrap">
+                    <div class="m-auto text-center">
+                        <div>{{temperature.place}}</div>
+                        <div>{{temperature.value}} {{temperature.unit}}</div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ngb-carousel>
+</ng-template>
+
+<ng-template #carouselHumidity>
+    <ngb-carousel
+        #carousels
+        [animation]="true"
+        [showNavigationArrows]="currentWeatherReport.humidity.data?.length > 1"
+        [showNavigationIndicators]="false"
+    >
+        <ng-container *ngFor="let humidity of currentWeatherReport.humidity.data; let idx = index">
+            <ng-template ngbSlide id="humidity{{idx}}">
+                <div class="d-flex flex-wrap">
+                    <div class="m-auto text-center">
+                        <div>{{humidity.place}}</div>
+                        <div>{{humidity.value}} {{humidity.unit === 'percent' ? '%' : ''}}</div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ngb-carousel>
+</ng-template>

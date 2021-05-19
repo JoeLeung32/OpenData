@@ -24,12 +24,15 @@ $leftRightSpacing: 24px;
 
 // code gen
 $colors: (
+        // background
+        --transparent-bg-color: ($transparent-bg-color, $transparent-bg-color-dark),
         --primary-bg-color: ($primary-bg-color, $primary-bg-color-dark),
         --secondary-bg-color: ($secondary-bg-color, $secondary-bg-color-dark),
         --tertiary-bg-color: ($tertiary-bg-color, $tertiary-bg-color-dark),
+        // font
         --primary-font-color: ($primary-font-color, $primary-font-color-dark),
         --secondary-font-color: ($secondary-font-color, $secondary-font-color-dark),
-        --transparent-bg-color: ($transparent-bg-color, $transparent-bg-color-dark),
+        // button
         --primary-btn-color: ($primary-btn-color, $primary-btn-color-dark),
         --primary-btn-font-color: ($primary-font-color, $primary-font-color-dark),
 );
