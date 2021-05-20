@@ -14,7 +14,15 @@
   "cumulativeRainfallFromJan": "一月至上月累计降雨量",
   "iconUpdateTime": "图示更新时间",
   "dataUpdateTime": "资料更新时间",
-  "maintain": "维护中",
-  "occurring": "发生中"
+  "maintain": "维修中",
+  "occurring": "发生中",
+  "overview": "概况",
+  "tcInformation": "热带气旋资讯",
+  "fireDangerWarnings": "火灾危险警告信息",
+  "outlook": "展望",
+  "seaTemp": "海面温度",
+  "soilTemp": "土壤温度",
+  "forecast": "预报",
+  "weatherForecast": "天气预报",
+  "nineDayWeatherForecast": "九天天气预报"
 }
-

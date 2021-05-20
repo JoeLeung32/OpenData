@@ -252,7 +252,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="m-auto text-center">
                         <div>{{temperature.place}}</div>
-                        <div>{{temperature.value}} {{temperature.unit}}</div>
+                        <div>{{temperature.value}} {{temperature.unit === 'C' ? '°C' : '°F'}}</div>
                     </div>
                 </div>
             </ng-template>

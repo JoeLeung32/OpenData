@@ -16,6 +16,8 @@ export class HkoLatestService {
         latestMinTemperature: new BehaviorSubject<null|any[]>(null),
         latestMinHumidity: new BehaviorSubject<null|any[]>(null),
         currentWeatherReport: new BehaviorSubject<null|{}>(null),
+        localWeatherForecast: new BehaviorSubject<null|{}>(null),
+        nineDayForecast: new BehaviorSubject<null|{}>(null),
     };
     private bridge = {
         csv: 'https://www.chunkit.hk/to/govhk/proxy.php?csv=',
@@ -96,13 +98,7 @@ export class HkoLatestService {
     requestLocalWeatherForecast(): void {
         this.weatherAPI('flw').subscribe({
             next: value => {
-                console.log(value.generalSituation); // 概況
-                console.log(value.tcInfo); // 熱帶氣旋資訊
-                console.log(value.fireDangerWarning); // 火災危險警告信息
-                console.log(value.forecastPeriod); // 預測時段
-                console.log(value.forecastDesc); // 預測內容
-                console.log(value.outlook); // 展望
-                console.log(value.updateTime); // 更新時間
+                this.response.localWeatherForecast.next(value);
             }
         });
     }
@@ -110,21 +106,7 @@ export class HkoLatestService {
     requestNineDayForecast(): void {
         this.weatherAPI('fnd').subscribe({
             next: value => {
-                console.log(value.generalSituation); // 概況
-                console.log(value.seaTemp); // 海面溫度
-                console.log(value.soilTemp); // 土壤溫度
-                console.log(value.updateTime);
-                console.log(value.weatherForecast); // 天氣預報
-                // console.log(forecastDate); // 預報日期
-                // console.log(forecastWeather); // 預測天氣
-                // console.log(forecastMaxtemp); // 預測最高溫度
-                // console.log(forecastMintemp); // 預測最低溫度
-                // console.log(week); // 星期天數
-                // console.log(forecastWind); // 預測風向風速
-                // console.log(forecastMaxrh); // 預測最高相對濕度
-                // console.log(forecastMinrh); // 預測最低相對濕度
-                // console.log(ForecastIcon); // 預測天氣圖示
-                // console.log(PSR); // 顯著降雨概率
+                this.response.nineDayForecast.next(value);
             }
         });
     }

@@ -15,5 +15,14 @@
   "iconUpdateTime": "Icon last update",
   "dataUpdateTime": "Data last update",
   "maintain": "Maintain",
-  "occurring": "Occurring"
+  "occurring": "Occurring",
+  "overview": "Overview",
+  "tcInformation": "Tropical Cyclone Information",
+  "fireDangerWarnings": "Fire Danger Warnings",
+  "outlook": "Outlook",
+  "seaTemp": "Sea Temperatures",
+  "soilTemp": "Soil Temperatures",
+  "forecast": "Forecast",
+  "weatherForecast": "Weather Forecast",
+  "nineDayWeatherForecast": "9-day Weather Forecast "
 }
