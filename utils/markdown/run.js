@@ -5,6 +5,7 @@ try {
     const ArgDirname = process.argv.find(arg => arg.indexOf('--dirname') === 0);
     if (ArgDirname && ArgDirname.split('=').length) {
         const dirname = ArgDirname.split('=')[1];
+        console.log(dirname);
         const MD = new FS(dirname)
         let list
         list = MD.setupMetaData(MD.scan())

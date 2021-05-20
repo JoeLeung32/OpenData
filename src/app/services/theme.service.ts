@@ -39,8 +39,8 @@ class ThemeService {
 
   initial(): void {
     const themeMode = this.session.get(SessionKeys.themeMode)?.toString();
-    if (Object.keys(ThemeModeType).includes(<string>themeMode)) {
-      this.set(<string>themeMode);
+    if (Object.keys(ThemeModeType).includes(themeMode as string)) {
+      this.set(themeMode as string);
     } else {
       this.detect();
     }

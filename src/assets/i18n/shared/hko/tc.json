@@ -14,6 +14,15 @@
   "cumulativeRainfallFromJan": "一月至上月累計降雨量",
   "iconUpdateTime": "圖示更新時間",
   "dataUpdateTime": "資料更新時間",
-  "maintain": "Maintain",
-  "occurring": "Occurring"
+  "maintain": "維修中",
+  "occurring": "發生中",
+  "overview": "概況",
+  "tcInformation": "熱帶氣旋資訊",
+  "fireDangerWarnings": "火災危險警告信息",
+  "outlook": "展望",
+  "seaTemp": "海面溫度",
+  "soilTemp": "土壤溫度",
+  "forecast": "預報",
+  "weatherForecast": "天氣預報",
+  "nineDayWeatherForecast": "九天天氣預報"
 }

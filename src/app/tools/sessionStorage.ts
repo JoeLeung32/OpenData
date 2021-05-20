@@ -20,11 +20,11 @@ class SessionStorage {
     try {
       if (data) {
         data = JSON.parse(data);
-        return <string>data;
+        return data;
       }
       return null;
     } catch (e) {
-      return null;
+      return data;
     }
   }
 }

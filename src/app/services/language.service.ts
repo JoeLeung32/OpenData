@@ -4,6 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ReplaySubject} from 'rxjs';
 import {take} from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -110,5 +111,18 @@ export class LanguageService {
   resetPageTitle(): void {
     this.basicTitleArray = ['webTitle'];
     this.setPageTitle();
+  }
+
+  dateTime(datetime: string, format?: string): string {
+    if (!format) {
+      format = 'LT';
+    }
+    const time = moment(datetime);
+    if (this.translate.currentLang === 'tc') {
+      return time.locale('zh-tw').format(format);
+    } else if (this.translate.currentLang === 'sc') {
+      return time.locale('zh-cn').format(format);
+    }
+    return time.locale('an-au').format(format);
   }
 }
