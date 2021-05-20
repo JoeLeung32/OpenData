@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "check-update": "npx npm-check-updates",
     "watch": "ng build --watch --configuration development",
-    "scanMD": "node utils/markdown/run.js --dirname='./dist/mds'",
+    "scanMD": "node utils/markdown/run.js --dirname='./src/mds'",
     "deploy": "node utils/deploy/run.js --dirname='./dist/opendata'",
     "deployToServer": "npm run scanMD && npm run build && node run deploy"
   },
