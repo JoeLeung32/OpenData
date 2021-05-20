@@ -5,8 +5,12 @@
 
   .card-body {
     .weatherIcon {
-      background-color: var(--tertiary-bg-color);
       user-select: none;
+    }
+
+    .badge {
+      position: relative;
+      top: -.1em;
     }
   }
 

@@ -2,16 +2,43 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-12 col-sm-3">
-                    <div class="d-flex flex-wrap flex-row">
-                        <div class="weatherIcon rounded p-2">
+                <div class="col">
+                    <div class="d-flex flex-wrap flex-row justify-content-center">
+                        <div class="weatherIcon">
                             <ng-container *ngFor="let icon of currentWeatherReport.icon">
-                                <img [src]="'https://www.hko.gov.hk/images/HKOWxIconOutline/pic'+icon+'.png'" [alt]="icon">
+                                <img [src]="'https://www.hko.gov.hk/images/HKOWxIconOutline/pic'+icon+'.png'"
+                                     [alt]="icon">
                             </ng-container>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ng-container *ngIf="currentWeatherReport.mintempFrom00To09">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <div>{{langPack.minTempFrom00to09}}</div>
+                            <div>{{currentWeatherReport.minTempFrom00to09}}</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="currentWeatherReport.rainfallFrom00To12">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <div>{{langPack.HKORainfallFrom00to12}}</div>
+                            <div>{{currentWeatherReport.rainfallFrom00To12}}</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="currentWeatherReport.rainfallLastMonth">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <div>{{langPack.rainfallLastMonth}}</div>
+                            <div>{{currentWeatherReport.rainfallLastMonth}}</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="currentWeatherReport.rainfallJanuaryToLastMonth">
+                        <div class="d-flex flex-wrap flex-column my-2">
+                            <div>{{langPack.cumulativeRainfallFromJan}}</div>
+                            <div>{{currentWeatherReport.rainfallJanuaryToLastMonth}}</div>
+                        </div>
+                    </ng-container>
                     <ng-container *ngIf="currentWeatherReport.rainstormReminder">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <div>{{langPack.rainstormReminder}}</div>
@@ -21,21 +48,32 @@
                     <ng-container *ngIf="currentWeatherReport.warningMessage">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="messageList; context: { title: langPack.warningMessage, $implicit: currentWeatherReport.warningMessage }">
+                                    *ngTemplateOutlet="messageList; context: {
+                                     title: langPack.warningMessage,
+                                      $implicit: currentWeatherReport.warningMessage,
+                                       type: 'warning'
+                                        }">
                             </ng-container>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="currentWeatherReport.specialWxTips">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="messageList; context: { title: langPack.specialWxTips, $implicit: currentWeatherReport.specialWxTips }">
+                                    *ngTemplateOutlet="messageList; context: {
+                                     title: langPack.specialWxTips,
+                                      $implicit: currentWeatherReport.specialWxTips,
+                                       type: 'info'
+                                        }">
                             </ng-container>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="currentWeatherReport.tcmessage">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="messageList; context: { title:langPack.tcmessage, $implicit: currentWeatherReport.tcmessage }">
+                                    *ngTemplateOutlet="messageList; context: {
+                                     title:langPack.tcmessage,
+                                      $implicit: currentWeatherReport.tcmessage,
+                                       type: 'danger' }">
                             </ng-container>
                         </div>
                     </ng-container>
@@ -43,7 +81,7 @@
             </div>
             <div class="row">
                 <ng-container *ngIf="currentWeatherReport.uvindex">
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
                                     *ngTemplateOutlet="ngbCarousel; context: { title: langPack.uvindex, subTitle: i18nDateTime(currentWeatherReport.uvindex.recordTime), $implicit: carouselUvindex }">
@@ -52,16 +90,16 @@
                     </div>
                 </ng-container>
                 <ng-container *ngIf="currentWeatherReport.rainfall">
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.rainfall, subTitle: i18nDateTime(currentWeatherReport.rainfall.startTime) + ' - ' + i18nDateTime(currentWeatherReport.rainfall.endTime), $implicit: carouselRainfall }">
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.rainfall, subTitle: i18nDateTime(currentWeatherReport.rainfall.startTime) + ' - ' + i18nDateTime(currentWeatherReport.rainfall.endTime), max: currentWeatherReport.rainfall._max, min: currentWeatherReport.rainfall._min, $implicit: carouselRainfall }">
                             </ng-container>
                         </div>
                     </div>
                 </ng-container>
                 <ng-container *ngIf="currentWeatherReport.lightning">
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
                                     *ngTemplateOutlet="ngbCarousel; context: { title: langPack.lightning, subTitle: i18nDateTime(currentWeatherReport.lightning.startTime) + ' - ' + i18nDateTime(currentWeatherReport.lightning.endTime), $implicit: carouselLightning }">
@@ -69,14 +107,14 @@
                         </div>
                     </div>
                 </ng-container>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12">
                     <div class="d-flex flex-wrap flex-column my-2">
                         <ng-container
-                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.regionalTemperature, subTitle: i18nDateTime(currentWeatherReport.temperature.recordTime), $implicit: carouselTemperature }">
+                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.regionalTemperature, subTitle: i18nDateTime(currentWeatherReport.temperature.recordTime), max: currentWeatherReport.temperature._max, min: currentWeatherReport.temperature._min, $implicit: carouselTemperature }">
                         </ng-container>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12">
                     <div class="d-flex flex-wrap flex-column my-2">
                         <ng-container
                                 *ngTemplateOutlet="ngbCarousel; context: { title: langPack.humidity , subTitle: i18nDateTime(currentWeatherReport.humidity.recordTime), $implicit: carouselHumidity }">
@@ -86,37 +124,48 @@
             </div>
         </div>
         <div class="card-footer small d-flex flex-wrap flex-column">
-            <ng-container *ngIf="currentWeatherReport.mintempFrom00To09">
-                <i>{{langPack.minTempFrom00to09}}：{{currentWeatherReport.mintempFrom00To09}}</i>
-            </ng-container>
-            <ng-container *ngIf="currentWeatherReport.rainfallFrom00To12">
-                <i>{{langPack.HKORainfallFrom00to12}}：{{currentWeatherReport.rainfallFrom00To12}}</i>
-            </ng-container>
-            <ng-container *ngIf="currentWeatherReport.rainfallLastMonth">
-                <i>{{langPack.rainfallLastMonth}}：{{currentWeatherReport.rainfallLastMonth}}</i>
-            </ng-container>
-            <ng-container *ngIf="currentWeatherReport.rainfallJanuaryToLastMonth">
-                <i>{{langPack.cumulativeRainfallFromJan}}：{{currentWeatherReport.rainfallJanuaryToLastMonth}}</i>
-            </ng-container>
-            <div>{{langPack.iconUpdateTime}}：{{currentWeatherReport.iconUpdateTime}}</div>
-            <div>{{langPack.dataUpdateTime}}：{{currentWeatherReport.updateTime}}</div>
+            <div>{{langPack.iconUpdateTime}}：{{i18nDateTime(currentWeatherReport.iconUpdateTime, 'LT')}}</div>
+            <div>{{langPack.dataUpdateTime}}：{{i18nDateTime(currentWeatherReport.updateTime, 'LT')}}</div>
         </div>
     </div>
 </ng-container>
 
-<ng-template #messageList let-title="title" let-params>
-    <div>{{title|translate}}</div>
+<ng-template #messageList let-title="title" let-params let-type="type">
+    <div>
+        {{title|translate}}
+        <span class="badge badge-{{type}} rounded">{{params.length}}</span>
+    </div>
     <ng-container *ngFor="let message of params">
-        <ol>
-            <li>{{message}}</li>
-        </ol>
+        <div class="alert alert-{{type}} my-2" role="alert">
+            <ol class="m-0">
+                <li>{{message}}</li>
+            </ol>
+        </div>
     </ng-container>
 </ng-template>
 
-<ng-template #ngbCarousel let-title="title" let-subTitle="subTitle" let-param>
+<ng-template #ngbCarousel let-title="title" let-subTitle="subTitle" let-max="max" let-min="min" let-param>
     <div class="d-flex flex-wrap justify-content-between align-items-center">
-        <strong>{{title|translate}}</strong>&nbsp;
-        <small>{{subTitle}}</small>
+        <div>
+            <strong>{{title|translate}}</strong>
+            <span class="mx-3">
+                <ng-container *ngIf="max">
+                    <span class="mx-1">
+                        <fa-icon [icon]="iconLongUp"></fa-icon>
+                        {{max}}
+                    </span>
+                </ng-container>
+                <ng-container *ngIf="min">
+                    <span class="mx-1">
+                        <fa-icon [icon]="iconLongDown"></fa-icon>
+                        {{min}}
+                    </span>
+                </ng-container>
+            </span>
+        </div>
+        <div>
+            <small>{{subTitle}}</small>
+        </div>
     </div>
     <div class="swipe my-2" (swipe)="onSwipe($event)">
         <ng-container *ngTemplateOutlet="param"></ng-container>
