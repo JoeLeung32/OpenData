@@ -14,28 +14,28 @@
                 <div class="col-12 col-sm">
                     <ng-container *ngIf="currentWeatherReport.rainstormReminder">
                         <div class="d-flex flex-wrap flex-column my-2">
-                            <div>{{langPack.getValue().rainstormReminder}}</div>
+                            <div>{{langPack.rainstormReminder}}</div>
                             <div>{{currentWeatherReport.rainstormReminder}}</div>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="currentWeatherReport.warningMessage">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="messageList; context: { title: langPack.getValue().warningMessage, $implicit: currentWeatherReport.warningMessage }">
+                                    *ngTemplateOutlet="messageList; context: { title: langPack.warningMessage, $implicit: currentWeatherReport.warningMessage }">
                             </ng-container>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="currentWeatherReport.specialWxTips">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="messageList; context: { title: langPack.getValue().specialWxTips, $implicit: currentWeatherReport.specialWxTips }">
+                                    *ngTemplateOutlet="messageList; context: { title: langPack.specialWxTips, $implicit: currentWeatherReport.specialWxTips }">
                             </ng-container>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="currentWeatherReport.tcmessage">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="messageList; context: { title:langPack.getValue().tcmessage, $implicit: currentWeatherReport.tcmessage }">
+                                    *ngTemplateOutlet="messageList; context: { title:langPack.tcmessage, $implicit: currentWeatherReport.tcmessage }">
                             </ng-container>
                         </div>
                     </ng-container>
@@ -46,7 +46,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().uvindex, subTitle: i18nDateTime(currentWeatherReport.uvindex.recordTime), $implicit: carouselUvindex }">
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.uvindex, subTitle: i18nDateTime(currentWeatherReport.uvindex.recordTime), $implicit: carouselUvindex }">
                             </ng-container>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().rainfall, subTitle: i18nDateTime(currentWeatherReport.rainfall.startTime) + ' - ' + i18nDateTime(currentWeatherReport.rainfall.endTime), $implicit: carouselRainfall }">
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.rainfall, subTitle: i18nDateTime(currentWeatherReport.rainfall.startTime) + ' - ' + i18nDateTime(currentWeatherReport.rainfall.endTime), $implicit: carouselRainfall }">
                             </ng-container>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="d-flex flex-wrap flex-column my-2">
                             <ng-container
-                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().lightning, subTitle: i18nDateTime(currentWeatherReport.lightning.startTime) + ' - ' + i18nDateTime(currentWeatherReport.lightning.endTime), $implicit: carouselLightning }">
+                                    *ngTemplateOutlet="ngbCarousel; context: { title: langPack.lightning, subTitle: i18nDateTime(currentWeatherReport.lightning.startTime) + ' - ' + i18nDateTime(currentWeatherReport.lightning.endTime), $implicit: carouselLightning }">
                             </ng-container>
                         </div>
                     </div>
@@ -72,14 +72,14 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="d-flex flex-wrap flex-column my-2">
                         <ng-container
-                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().regionalTemperature, subTitle: i18nDateTime(currentWeatherReport.temperature.recordTime), $implicit: carouselTemperature }">
+                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.regionalTemperature, subTitle: i18nDateTime(currentWeatherReport.temperature.recordTime), $implicit: carouselTemperature }">
                         </ng-container>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="d-flex flex-wrap flex-column my-2">
                         <ng-container
-                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.getValue().humidity , subTitle: i18nDateTime(currentWeatherReport.humidity.recordTime), $implicit: carouselHumidity }">
+                                *ngTemplateOutlet="ngbCarousel; context: { title: langPack.humidity , subTitle: i18nDateTime(currentWeatherReport.humidity.recordTime), $implicit: carouselHumidity }">
                         </ng-container>
                     </div>
                 </div>
@@ -87,19 +87,19 @@
         </div>
         <div class="card-footer small d-flex flex-wrap flex-column">
             <ng-container *ngIf="currentWeatherReport.mintempFrom00To09">
-                <i>{{langPack.getValue().minTempFrom00to09}}：{{currentWeatherReport.mintempFrom00To09}}</i>
+                <i>{{langPack.minTempFrom00to09}}：{{currentWeatherReport.mintempFrom00To09}}</i>
             </ng-container>
             <ng-container *ngIf="currentWeatherReport.rainfallFrom00To12">
-                <i>{{langPack.getValue().HKORainfallFrom00to12}}：{{currentWeatherReport.rainfallFrom00To12}}</i>
+                <i>{{langPack.HKORainfallFrom00to12}}：{{currentWeatherReport.rainfallFrom00To12}}</i>
             </ng-container>
             <ng-container *ngIf="currentWeatherReport.rainfallLastMonth">
-                <i>{{langPack.getValue().rainfallLastMonth}}：{{currentWeatherReport.rainfallLastMonth}}</i>
+                <i>{{langPack.rainfallLastMonth}}：{{currentWeatherReport.rainfallLastMonth}}</i>
             </ng-container>
             <ng-container *ngIf="currentWeatherReport.rainfallJanuaryToLastMonth">
-                <i>{{langPack.getValue().cumulativeRainfallFromJan}}：{{currentWeatherReport.rainfallJanuaryToLastMonth}}</i>
+                <i>{{langPack.cumulativeRainfallFromJan}}：{{currentWeatherReport.rainfallJanuaryToLastMonth}}</i>
             </ng-container>
-            <div>{{langPack.getValue().iconUpdateTime}}：{{currentWeatherReport.iconUpdateTime}}</div>
-            <div>{{langPack.getValue().dataUpdateTime}}：{{currentWeatherReport.updateTime}}</div>
+            <div>{{langPack.iconUpdateTime}}：{{currentWeatherReport.iconUpdateTime}}</div>
+            <div>{{langPack.dataUpdateTime}}：{{currentWeatherReport.updateTime}}</div>
         </div>
     </div>
 </ng-container>
@@ -160,7 +160,7 @@
                         <div>{{rainfall.place}}</div>
                         <div>{{rainfall.max}} {{rainfall.unit}}</div>
                         <ng-container *ngIf="rainfall.main === 'TRUE'">
-                            <div>{{langPack.getValue().maintain}}</div>
+                            <div>{{langPack.maintain}}</div>
                         </ng-container>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="m-auto text-center">
                         <div>{{lightning.place}}</div>
-                        <div>{{lightning.occur ? langPack.getValue().occurring : ''}}</div>
+                        <div>{{lightning.occur ? langPack.occurring : ''}}</div>
                     </div>
                 </div>
             </ng-template>
