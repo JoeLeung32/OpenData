@@ -1,0 +1,8 @@
+<div class="d-flex flex-wrap flex-column wrapper">
+  <div class="flex-grow-1 position-relative">
+    <ng-content></ng-content>
+  </div>
+  <ng-container *ngIf="footer">
+    <app-footer></app-footer>
+  </ng-container>
+</div>

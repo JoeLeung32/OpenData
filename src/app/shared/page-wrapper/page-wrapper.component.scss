@@ -1,0 +1,5 @@
+@import "~src/assets/themes/default";
+
+.wrapper {
+  @include page-wrapper
+}

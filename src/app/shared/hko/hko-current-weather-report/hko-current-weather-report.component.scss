@@ -1,0 +1,22 @@
+@import "~src/assets/themes/default";
+
+.card {
+  background-color: var(--secondary-bg-color);
+  border-radius: 12px;
+  border: 0 none;
+
+  .card-body {
+    .weatherIcon {
+      user-select: none;
+    }
+
+    .badge {
+      position: relative;
+      top: -.1em;
+    }
+  }
+
+  .card-footer {
+    color: var(--secondary-font-color);
+  }
+}

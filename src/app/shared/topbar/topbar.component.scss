@@ -1,0 +1,82 @@
+@import "~src/assets/themes/default";
+
+.topbar {
+  position: relative;
+  z-index: 9413;
+  min-height: $topBarHeight;
+
+  > .container {
+
+    > div {
+
+      &:nth-child(1),
+      &:nth-child(3) {
+      }
+
+      &:nth-child(2) {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      > div {
+        cursor: pointer;
+        margin: 0 8px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .btnLocal {
+      display: block;
+      position: relative;
+
+      label {
+        cursor: pointer;
+      }
+
+      .localMenu {
+        @include box-shadow;
+        background-color: var(--primary-bg-color);
+        border-radius: 5px;
+        display: none;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 30px;
+
+        > span {
+          background: transparent;
+          border: 0 none;
+          color: var(--primary-font-color);
+          cursor: pointer;
+          padding: 12px 24px;
+          text-align: center;
+          white-space: nowrap;
+          width: 100%;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, .15);
+          }
+
+        }
+      }
+
+      [type="checkbox"] {
+        display: none;
+
+        &:checked + .localMenu {
+          display: flex;
+        }
+      }
+    }
+  }
+}

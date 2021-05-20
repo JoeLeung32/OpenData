@@ -1,0 +1,14 @@
+@import "~src/assets/themes/default";
+
+footer {
+  color: var(--secondary-font-color);
+  font-size: .75em;
+
+  a {
+    color: var(--secondary-font-color);
+  }
+
+  > div {
+    padding: 24px 0;
+  }
+}

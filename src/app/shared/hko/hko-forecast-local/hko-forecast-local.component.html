@@ -1,0 +1,229 @@
+<div class="card">
+    <div class="card-body">
+        <ng-container *ngIf="localForecast">
+            <div class="row">
+                <div class="col text-center mb-1">
+                    <strong class="lead">{{langPack.weatherForecast}}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <strong>{{langPack.overview}}</strong>
+                        <small>{{i18nDateTime(localForecast.updateTime, 'LLL')}}</small>
+                    </div>
+                    <p>{{localForecast.generalSituation}}</p>
+                </div>
+            </div>
+            <ng-container *ngIf="localForecast.tcInfo !== ''">
+                <div class="row">
+                    <div class="col">
+                        <strong>{{langPack.tcInformation}}</strong>
+                        <p>{{localForecast.tcInfo}}</p>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="localForecast.fireDangerWarning !== ''">
+                <div class="row">
+                    <div class="col">
+                        <strong>{{langPack.fireDangerWarnings}}</strong>
+                        <p>{{localForecast.fireDangerWarning}}</p>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="localForecast.forecastDesc">
+                <div class="row">
+                    <div class="col">
+                        <strong>{{localForecast.forecastPeriod}}</strong>
+                        <p>{{localForecast.forecastDesc}}</p>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="localForecast.outlook">
+                <div class="row">
+                    <div class="col">
+                        <strong>{{langPack.outlook}}</strong>
+                        <p>{{localForecast.outlook}}</p>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="nineDayForecast">
+            <div class="row">
+                <div class="col text-center mb-1">
+                    <strong class="lead">{{langPack.nineDayWeatherForecast}}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <strong>{{langPack.overview}}</strong>
+                        <small>{{i18nDateTime(nineDayForecast.updateTime, 'LLL')}}</small>
+                    </div>
+                    <p>{{nineDayForecast.generalSituation}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <ng-container *ngIf="nineDayForecast.seaTemp">
+                        <strong>{{langPack.seaTemp}}</strong>
+                        <div class="d-flex flex-wrap flex-column">
+                            <div class="swipe" (swipe)="onSwipe($event)">
+                                <ngb-carousel
+                                    #carousels
+                                    [animation]="true"
+                                    [showNavigationArrows]="nineDayForecast.seaTemp?.length > 1"
+                                    [showNavigationIndicators]="false"
+                                >
+                                    <ng-container
+                                            *ngFor="let seaTemp of [nineDayForecast.seaTemp]; let idx = index">
+                                        <ng-template ngbSlide id="seaTemp{{idx}}">
+                                            <div class="d-flex flex-wrap">
+                                                <div class="m-auto text-center">
+                                                    <div>{{seaTemp.place}}</div>
+                                                    <div>{{seaTemp.value}} {{seaTemp.unit}}</div>
+                                                    <div>
+                                                        <small>{{i18nDateTime(seaTemp.recordTime)}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ng-container>
+                                </ngb-carousel>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <ng-container *ngIf="nineDayForecast.soilTemp">
+                        <strong>{{langPack.soilTemp}}</strong>
+                        <div class="d-flex flex-wrap flex-column">
+                            <div class="swipe" (swipe)="onSwipe($event)">
+                                <ngb-carousel
+                                    #carousels
+                                    [animation]="true"
+                                    [showNavigationArrows]="nineDayForecast.soilTemp?.length > 1"
+                                    [showNavigationIndicators]="false"
+                                >
+                                    <ng-container
+                                            *ngFor="let soilTemp of nineDayForecast.soilTemp; let idx = index">
+                                        <ng-template ngbSlide id="soilTemp{{idx}}">
+                                            <div class="d-flex flex-wrap">
+                                                <div class="m-auto text-center">
+                                                    <div>{{soilTemp.place}}</div>
+                                                    <div>{{soilTemp.value}} {{soilTemp.unit}}</div>
+                                                    <div>
+                                                        <small>{{i18nDateTime(soilTemp.recordTime)}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ng-container>
+                                </ngb-carousel>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>{{langPack.weatherForecast}}</strong>
+                    <div class="d-flex flex-wrap flex-column">
+                        <div class="swipe" (swipe)="onSwipe($event)">
+                            <ngb-carousel
+                                #carousels
+                                [animation]="true"
+                                [showNavigationArrows]="nineDayForecast.weatherForecast?.length > 1"
+                                [showNavigationIndicators]="false"
+                            >
+                                <ng-container
+                                        *ngFor="let weather of nineDayForecast.weatherForecast; let idx = index">
+                                    <ng-template ngbSlide id="weather{{idx}}">
+                                        <div class="d-flex flex-wrap">
+                                            <div class="m-auto">
+                                                <div class="mx-5 text-center">
+                                                    <div class="row no-gutters">
+                                                        <div class="col">
+                                                            <strong>{{i18nDateTime(weather.forecastDate, 'LL')}}</strong>
+                                                            <div>{{weather.week}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-gutters">
+                                                        <div class="col-12 col-lg-5">
+                                                            <img [src]="'https://www.hko.gov.hk/images/HKOWxIconOutline/pic'+weather.ForecastIcon+'.png'"
+                                                                 [alt]="weather.forecastDate">
+                                                        </div>
+                                                        <div class="col-12 col-lg-7">
+                                                            <div class="position-relative text-left">
+                                                                <div class="position-absolute">
+                                                                    <fa-icon [icon]="iconWind"></fa-icon>
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    {{weather.forecastWind}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="position-relative text-left">
+                                                                <div class="position-absolute">
+                                                                    <fa-icon [icon]="iconCloudRain"></fa-icon>
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    {{weather.PSR}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="position-relative text-left">
+                                                                <div class="position-absolute">
+                                                                    <fa-icon [icon]="iconThermometer"></fa-icon>
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    <div class="d-flex flex-wrap">
+                                                                        <div class="mr-2">
+                                                                            <fa-icon [icon]="iconLongUp"></fa-icon>
+                                                                            {{weather.forecastMaxtemp.value}} {{weather.forecastMaxtemp.unit === 'C' ? '°C' : '°F'}}
+                                                                        </div>
+                                                                        <div class="ml-2">
+                                                                            <fa-icon [icon]="iconLongDown"></fa-icon>
+                                                                            {{weather.forecastMintemp.value}} {{weather.forecastMintemp.unit === 'C' ? '°C' : '°F'}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="position-relative text-left">
+                                                                <div class="position-absolute">
+                                                                    <fa-icon [icon]="iconWet"></fa-icon>
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    <div class="d-flex flex-wrap">
+                                                                        <div class="mr-2">
+                                                                            <fa-icon [icon]="iconLongUp"></fa-icon>
+                                                                            {{weather.forecastMaxrh.value}} {{weather.forecastMaxrh.unit === 'C' ? '°C' : '°F'}}
+                                                                        </div>
+                                                                        <div class="ml-2">
+                                                                            <fa-icon [icon]="iconLongDown"></fa-icon>
+                                                                            {{weather.forecastMinrh.value}} {{weather.forecastMinrh.unit === 'C' ? '°C' : '°F'}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="position-relative text-left">
+                                                                <div class="position-absolute">
+                                                                    <fa-icon [icon]="iconInfo"></fa-icon>
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    {{weather.forecastWeather}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ng-container>
+                            </ngb-carousel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
