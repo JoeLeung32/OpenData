@@ -12,7 +12,8 @@
     "watch": "ng build --watch --configuration development",
     "scanMD": "node utils/markdown/run.js --dirname='./src/mds'",
     "deploy": "node utils/deploy/run.js --dirname='./dist/opendata'",
-    "deployToServer": "npm run scanMD && npm run build && node run deploy"
+    "deployToServer": "npm run scanMD && npm run build && node run deploy",
+    "serviceWorker": "npm run build && http-server -p 8080 -c-1 dist/opendata"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@angular/platform-browser": "11.2.14",
     "@angular/platform-browser-dynamic": "11.2.14",
     "@angular/router": "11.2.14",
+    "@angular/service-worker": "11.2.14",
     "@fortawesome/angular-fontawesome": "0.8.2",
     "@fortawesome/fontawesome-svg-core": "1.2.34",
     "@fortawesome/free-brands-svg-icons": "5.15.3",
@@ -35,6 +37,7 @@
     "@ngx-translate/http-loader": "6.0.0",
     "bootstrap": "4.5.0",
     "hammerjs": "2.0.8",
+    "http-server": "0.12.3",
     "moment": "2.29.1",
     "ngx-markdown": "11.1.3",
     "ngx-moment": "5.0.0",
